@@ -1,9 +1,11 @@
 package com.example.cornelious.busbooking.domain.booking;
 
+import java.io.Serializable;
+
 /**
  * Created by Cornelious on 4/16/2016.
  */
-public class Ticket {
+public class Ticket implements Serializable {
     private Long ticketNum;
     private  String ticketType;
     private String route;

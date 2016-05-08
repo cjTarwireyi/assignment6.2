@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     /*@Override
     protected void onStart() {
        // super.onStart();
-       // Intent intent = new Intent (this, TicketService.class);
+       // Intent intent = new Intent (this, TicketBoundService.class);
         //startService(intent);
     }*/
 
@@ -37,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
     }
   /*  public void  startMethod(View v)
     {
-        Intent intent = new Intent (this, TicketService.class);
+        Intent intent = new Intent (this, TicketBoundService.class);
         startService(intent);
 
     }*/
    /* public void stopMethod(View v){
-        Intent intent = new Intent(this,TicketService.class);
+        Intent intent = new Intent(this,TicketBoundService.class);
         stopService(intent);
 
     }*/

@@ -6,7 +6,7 @@ import com.example.cornelious.busbooking.domain.bus.Bus;
 /**
  * Created by Cornelious on 4/16/2016.
  */
-public class BusFactoryImpl implements IBusFactory {
+public class BusFactoryImpl   {
     private static BusFactoryImpl objBusFactory=null;
     public BusFactoryImpl getInstance()
     {
@@ -14,8 +14,8 @@ public class BusFactoryImpl implements IBusFactory {
             objBusFactory= new BusFactoryImpl();
         return objBusFactory;
     }
-    @Override
-    public Bus createBus(String numberPlate, int numberOfSeats) {
+
+    public static Bus createBus(String numberPlate, int numberOfSeats) {
         Bus objBus= new Bus.BusBuilder()
                 .getnumberPlate(numberPlate)
                 .seats(numberOfSeats)

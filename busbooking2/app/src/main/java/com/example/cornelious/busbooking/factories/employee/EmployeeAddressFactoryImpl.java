@@ -6,7 +6,7 @@ import com.example.cornelious.busbooking.domain.employee.EmpAddressVO;
 /**
  * Created by Cornelious on 4/14/2016.
  */
-public class EmployeeAddressFactoryImpl extends IAddressFactory {
+public class EmployeeAddressFactoryImpl   {
     private static EmployeeAddressFactoryImpl objAddressFactory=null;
     public static EmployeeAddressFactoryImpl getInstance()
     {
@@ -14,8 +14,8 @@ public class EmployeeAddressFactoryImpl extends IAddressFactory {
             objAddressFactory=new EmployeeAddressFactoryImpl();
         return objAddressFactory;
     }
-    @Override
-    public EmpAddressVO createEmployeeAddress(Long id,String street, String city, String code){
+
+    public static EmpAddressVO createEmployeeAddress(Long id,String street, String city, String code){
         EmpAddressVO objAddress= new EmpAddressVO.AddressBuilder()
                 .id(id)
                 .street(street)

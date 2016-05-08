@@ -20,7 +20,7 @@
         </activity>
 
         <service
-            android:name=".services.Impl.TicketService"
+            android:name=".services.Impl.TicketBoundService"
             android:enabled="true"
             android:exported="true" />
         <service
@@ -34,6 +34,25 @@
             android:exported="false" />
         <service
             android:name=".services.Impl.MaintainanceIntentService"
+            android:exported="false" />
+        <service
+            android:name=".services.Impl.PassengerBoundService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.Impl.EmployeeBoundService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.Impl.BusBoundService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.Impl.MaintainanceBoundService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.Impl.TicketIntentService"
             android:exported="false"></service>
     </application>
 

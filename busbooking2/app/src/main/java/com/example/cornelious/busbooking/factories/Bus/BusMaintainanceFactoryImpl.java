@@ -6,7 +6,7 @@ import com.example.cornelious.busbooking.domain.bus.Maintainance;
 /**
  * Created by Cornelious on 4/17/2016.
  */
-public class BusMaintainanceFactoryImpl implements IBusMaintainanceFactory {
+public class BusMaintainanceFactoryImpl  {
 private BusMaintainanceFactoryImpl objMaintainanceFactory=null;
     public BusMaintainanceFactoryImpl getInstance()
     {
@@ -16,8 +16,8 @@ private BusMaintainanceFactoryImpl objMaintainanceFactory=null;
     }
 
 
-    @Override
-    public Maintainance createMaintainance(Long id,String maintainanceCode,String descrition, double cost) {
+
+    public static Maintainance createMaintainance(Long id,String maintainanceCode,String descrition, double cost) {
         Maintainance objMaintainance = new Maintainance.BuildMaintainance()
                 .id(id)
                 .code(maintainanceCode)

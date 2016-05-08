@@ -11,20 +11,16 @@ import com.example.cornelious.busbooking.repositories.employee.EmployeeRepoImpl;
 import com.example.cornelious.busbooking.repositories.passenger.PassengerRepositoryImpl;
 import com.example.cornelious.busbooking.services.IEmployeeService;
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p/>
- * TODO: Customize class - update intent actions, extra parameters and static
- * helper methods.
- */
+
+//Intent service used so that the adding of records can be executed in the
+// background in a queue in which the service will exit when done with the queue
+
 public class EmployeeIntentService extends IntentService implements IEmployeeService {
-    // TODO: Rename actions, choose action names that describe tasks that this
-    // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
+
     private static final String ACTION_ADD = "com.example.cornelious.busbooking.services.Impl.action.ADD";
     private static final String ACTION_UPDATE = "com.example.cornelious.busbooking.services.Impl.action.UPDATE";
 
-    // TODO: Rename parameters
+
     private static final String EXTRA_ADD = "com.example.cornelious.busbooking.services.Impl.extra.ADD";
     private static final String EXTRA_UPDATE = "com.example.cornelious.busbooking.services.Impl.extra.UPDATE";
 

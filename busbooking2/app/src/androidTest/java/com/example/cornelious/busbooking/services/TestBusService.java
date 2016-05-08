@@ -13,6 +13,13 @@ import com.example.cornelious.busbooking.services.Impl.BusIntentervice;
 public class TestBusService extends AndroidTestCase {
     private BusIntentervice objBusService;
     private Bus objBus;
+
+    public void testName() throws Exception {
+        Intent intent = new Intent(App.getAppContext(),TestBusService.class);
+        objBusService.startService(intent);
+
+    }
+
     public void testBusService() {
         Long n= new Long(1);
         objBusService= BusIntentervice.getInstance();

@@ -8,21 +8,23 @@ import android.os.IBinder;
 import android.test.AndroidTestCase;
 
 import com.example.cornelious.busbooking.config.App;
-import com.example.cornelious.busbooking.services.Impl.TicketService;
+import com.example.cornelious.busbooking.services.Impl.TicketBoundService;
+
+import junit.framework.Assert;
 
 /**
  * Created by Cornelious on 5/6/2016.
  */
-public class TestTicketService extends AndroidTestCase {
-private TicketService objTicketService;
+public class TestTicketBoundService extends AndroidTestCase {
+    private TicketBoundService objTicketService;
     private boolean isBound;
 
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        objTicketService= TicketService.getInstance();
-        Intent intent = new Intent(App.getAppContext(),TicketService.class);
+        objTicketService= TicketBoundService.getInstance();
+        Intent intent = new Intent(App.getAppContext(),TicketBoundService.class);
         App.getAppContext().bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
     private ServiceConnection connection = new
@@ -30,7 +32,7 @@ private TicketService objTicketService;
                 @Override
                 public void onServiceConnected(ComponentName name, IBinder service) {
 
-                    TicketService.ActivateLocalBinder binder =(TicketService.ActivateLocalBinder)service;
+                    TicketBoundService.MyLocalBinder binder =(TicketBoundService.MyLocalBinder)service;
                     objTicketService=binder.getService();
                     isBound= true;
 
@@ -44,9 +46,7 @@ private TicketService objTicketService;
             };
     public void testTicketAdded() throws  Exception{
         Long id= new Long(10);
-
-        String add=objTicketService.addPassenger(id,"1","cpt",2.0);
-        //int answer=objTicketService.add(1,2);
-       // Assert.assertNotSame("Ticket ADED",add);
+        String ticketType=objTicketService.findTicket(id);
+        Assert.assertNotSame("Adult",ticketType);
     }
 }

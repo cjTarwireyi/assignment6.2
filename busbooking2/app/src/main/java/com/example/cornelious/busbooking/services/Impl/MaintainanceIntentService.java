@@ -4,19 +4,21 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
 
-import com.example.cornelious.busbooking.Interfaces.bus.IMaintainanceRepo;
 import com.example.cornelious.busbooking.config.App;
 import com.example.cornelious.busbooking.domain.bus.Maintainance;
 import com.example.cornelious.busbooking.repositories.bus.MaintainanceRepoImpl;
+import com.example.cornelious.busbooking.services.IMaintainanceService;
 
 
-public class MaintainanceIntentService extends IntentService implements IMaintainanceService{
-    // TODO: Rename actions, choose action names that describe tasks that this
-    // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
+//Intent service used so that the adding of records can be executed in the
+// background in a queue in which the service will exit when done with the queue
+
+public class MaintainanceIntentService extends IntentService implements IMaintainanceService {
+
     private static final String ACTION_ADD = "com.example.cornelious.busbooking.services.Impl.action.ADD";
     private static final String ACTION_UPDATE = "com.example.cornelious.busbooking.services.Impl.action.UPDATE";
 
-    // TODO: Rename parameters
+
     private static final String EXTRA_ADD = "com.example.cornelious.busbooking.services.Impl.extra.ADD";
     private static final String EXTRA_UPDATE = "com.example.cornelious.busbooking.services.Impl.extra.UPDATE";
 

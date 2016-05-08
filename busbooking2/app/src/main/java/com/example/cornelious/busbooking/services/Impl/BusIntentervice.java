@@ -11,11 +11,11 @@ import com.example.cornelious.busbooking.domain.bus.Bus;
 import com.example.cornelious.busbooking.repositories.bus.BusRepoImpl;
 import com.example.cornelious.busbooking.services.IBusService;
 
-
+//Intent service used so that the adding of records can be executed in the
+// background in a queue in which the service will exit when done with the queue
 public class BusIntentervice extends IntentService implements IBusService {
     private final IBusRepositroy objBusRepo;
-    // TODO: Rename actions, choose action names that describe tasks that this
-    // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
+
     private static final String ACTION_ADD = "com.example.cornelious.busbooking.services.Impl.action.ADD";
     private static final String ACTION_UPDATE = "com.example.cornelious.busbooking.services.Impl.action.UPDATE";
 

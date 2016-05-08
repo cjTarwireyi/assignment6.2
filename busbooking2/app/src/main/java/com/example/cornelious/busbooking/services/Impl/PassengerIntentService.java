@@ -10,19 +10,16 @@ import com.example.cornelious.busbooking.domain.passenger.PassengerAddress;
 import com.example.cornelious.busbooking.repositories.passenger.PassengerRepositoryImpl;
 import com.example.cornelious.busbooking.services.IPassengerIntentService;
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p/>
- * TODO: Customize class - update intent actions, extra parameters and static
- * helper methods.
- */
+//Intent service used so that the adding of records can be executed in the
+// background in a queue in which the service will exit when done with the queue
+
+
 public class PassengerIntentService extends IntentService implements IPassengerIntentService {
     private PassengerRepositoryImpl objRepo;
     private static final String ACTION_ADD = "com.example.cornelious.busbooking.services.passenger.action.ADD";
     private static final String ACTION_UPDATE = "com.example.cornelious.busbooking.services.passenger.action.UPDATE";
 
-    // TODO: Rename parameters
+
     private static final String EXTRA_ADD = "com.example.cornelious.busbooking.services.passenger.extra.ADD";
     private static final String EXTRA_UPDATE = "com.example.cornelious.busbooking.services.passenger.extra.UPDATE";
 
