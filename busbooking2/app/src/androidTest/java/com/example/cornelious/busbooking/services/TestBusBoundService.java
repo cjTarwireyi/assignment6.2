@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.test.AndroidTestCase;
+import android.widget.Toast;
 
 import com.example.cornelious.busbooking.config.App;
 import com.example.cornelious.busbooking.domain.bus.Bus;
@@ -14,12 +15,14 @@ import com.example.cornelious.busbooking.services.impl.BusBoundService;
 
 import junit.framework.Assert;
 
+import java.util.Set;
+
 /**
  * Created by Cornelious on 5/11/2016.
  */
 public class TestBusBoundService extends AndroidTestCase{
-    private BusBoundService objBusService;
-    private boolean isBound;
+    private BusBoundService mService;
+    private boolean status;
     BusRepoImpl objRepo;
     @Override
     public void setUp() throws Exception {
@@ -27,33 +30,34 @@ public class TestBusBoundService extends AndroidTestCase{
         //
         Intent intent = new Intent(App.getContext(),BusBoundService.class );
         App.getContext().bindService(intent,connection, Context.BIND_AUTO_CREATE);
+        status=true;
+        Toast.makeText(getContext(),"service binded successfully",Toast.LENGTH_LONG).show();
+
 
     }
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            BusBoundService.MyLocalBinder binder=(BusBoundService.MyLocalBinder)service;
-            objBusService=binder.getService();
-            isBound=true;
+            BusBoundService.LocalBinder binder =(BusBoundService.LocalBinder)service;
+            mService=binder.getService();
+            status=true;
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            isBound=false;
+            status=false;
         }
     };
 
     public void testBusAdded(){
-        objRepo= new BusRepoImpl(App.getContext());
-        Long id= new Long(10);
-        Bus bus=new Bus.BusBuilder()
-                .seats(2)
-                .getnumberPlate("123")
-                .build();
-      // objBusService.findBus(0L);
-        objBusService.findBus(0L);
 
-        //Assert.assertEquals("CA123", objRepo.findById(0L));
+        String status=mService.addBus();
+
+        Set<Bus> found= mService.find();
+        Assert.assertEquals("BUS ACTIVATED",status);
+        Assert.assertTrue("TestADD"+found.size(),found.size()> 0);
+        Assert.assertNotNull(mService.findById(1L));
+
     }
 
 }
