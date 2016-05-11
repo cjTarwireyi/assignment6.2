@@ -1,5 +1,6 @@
 package com.example.cornelious.booking;
 
+import com.example.cornelious.busbooking.Interfaces.booking.ITicketFactory;
 import com.example.cornelious.busbooking.domain.booking.Ticket;
 import com.example.cornelious.busbooking.factories.booking.TicketFactoryImpl;
 

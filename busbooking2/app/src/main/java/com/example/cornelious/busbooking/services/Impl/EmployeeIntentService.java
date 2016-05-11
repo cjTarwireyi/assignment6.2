@@ -1,4 +1,4 @@
-package com.example.cornelious.busbooking.services.Impl;
+package com.example.cornelious.busbooking.services.impl;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -6,50 +6,48 @@ import android.content.Context;
 
 import com.example.cornelious.busbooking.config.App;
 import com.example.cornelious.busbooking.domain.employee.Employee;
-import com.example.cornelious.busbooking.domain.passenger.Passenger;
 import com.example.cornelious.busbooking.repositories.employee.EmployeeRepoImpl;
-import com.example.cornelious.busbooking.repositories.passenger.PassengerRepositoryImpl;
-import com.example.cornelious.busbooking.services.IEmployeeService;
+import com.example.cornelious.busbooking.services.IEmployeeIntentService;
 
 
-//Intent service used so that the adding of records can be executed in the
-// background in a queue in which the service will exit when done with the queue
+public class EmployeeIntentService extends IntentService implements IEmployeeIntentService{
+    private final EmployeeRepoImpl objRepo;
+    private EmployeeIntentService service=null;
 
-public class EmployeeIntentService extends IntentService implements IEmployeeService {
+    private static final String ACTION_ADD = "com.example.cornelious.busbooking.services.impl.action.ADD";
+    private static final String ACTION_UPDATE = "com.example.cornelious.busbooking.services.impl.action.UPDATE";
 
-    private static final String ACTION_ADD = "com.example.cornelious.busbooking.services.Impl.action.ADD";
-    private static final String ACTION_UPDATE = "com.example.cornelious.busbooking.services.Impl.action.UPDATE";
+    // TODO: Rename parameters
+    private static final String EXTRA_ADD = "com.example.cornelious.busbooking.services.impl.extra.ADD";
+    private static final String EXTRA_UPDATE = "com.example.cornelious.busbooking.services.impl.extra.UPDATE";
 
 
-    private static final String EXTRA_ADD = "com.example.cornelious.busbooking.services.Impl.extra.ADD";
-    private static final String EXTRA_UPDATE = "com.example.cornelious.busbooking.services.Impl.extra.UPDATE";
+            public EmployeeIntentService getInstance(){
+                if (service==null)
+                    service= new EmployeeIntentService();
+                return  service;
+            }
 
-    EmployeeRepoImpl objRepo;
-    private static EmployeeIntentService service =null;
-
-    public static EmployeeIntentService getInstance(){
-        if(service==null)
-            service= new EmployeeIntentService();
-        return  service;
-    }
-    private EmployeeIntentService() {
+    public EmployeeIntentService() {
         super("EmployeeIntentService");
-        objRepo= new EmployeeRepoImpl(App.getAppContext());
+        objRepo= new EmployeeRepoImpl(App.getContext());
     }
-@Override
-    public  void addEmployee(Context context, Employee objEmployee) {
+
+
+    public void addEmp(Context context,Employee employee){
         Intent intent = new Intent(context, EmployeeIntentService.class);
         intent.setAction(ACTION_ADD);
-        intent.putExtra(EXTRA_ADD, objEmployee);
+        intent.putExtra(EXTRA_ADD, employee);
 
         context.startService(intent);
     }
 
-    @Override
-    public  void updateEmployee(Context context, Employee objEmployee) {
+
+    public  void updateEmp(Context context,Employee employee) {
         Intent intent = new Intent(context, EmployeeIntentService.class);
         intent.setAction(ACTION_UPDATE);
-        intent.putExtra(EXTRA_UPDATE, objEmployee);
+        intent.putExtra(EXTRA_UPDATE, employee);
+
         context.startService(intent);
     }
 
@@ -58,27 +56,16 @@ public class EmployeeIntentService extends IntentService implements IEmployeeSer
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_ADD.equals(action)) {
-                final Employee objEmployee = (Employee)intent.getSerializableExtra(EXTRA_ADD);
+                final Employee employee = (Employee)intent.getSerializableExtra(EXTRA_ADD);
 
-                add(objEmployee);
+                objRepo.add(employee);
             } else if (ACTION_UPDATE.equals(action)) {
+                final Employee employee =(Employee) intent.getSerializableExtra(EXTRA_UPDATE);
 
-                final Employee objEmployee =(Employee) intent.getSerializableExtra(EXTRA_UPDATE);
-                update(objEmployee);
+                objRepo.update(employee);
             }
         }
     }
 
-    /**
-     * Handle action Foo in the provided background thread with the provided
-     * parameters.
-     */
-    private void add(Employee objEmployee) {
-        objRepo.add(objEmployee);
 
-    }
-
-    private void update(Employee objEmployee) {
-        objRepo.update(objEmployee);
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.cornelious.busbooking;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,13 +10,15 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.cornelious.busbooking.services.UpdateService;
+
 public class MainActivity extends AppCompatActivity {
-    /*@Override
+    @Override
     protected void onStart() {
-       // super.onStart();
-       // Intent intent = new Intent (this, TicketBoundService.class);
-        //startService(intent);
-    }*/
+        super.onStart();
+        Intent intent = new Intent (this, UpdateService.class);
+        startService(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +38,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-  /*  public void  startMethod(View v)
+    public void  startMethod(View v)
     {
-        Intent intent = new Intent (this, TicketBoundService.class);
+        Intent intent = new Intent (this, UpdateService.class);
         startService(intent);
 
-    }*/
-   /* public void stopMethod(View v){
-        Intent intent = new Intent(this,TicketBoundService.class);
+    }
+    public void stopMethod(View v){
+        Intent intent = new Intent(this,UpdateService.class);
         stopService(intent);
 
-    }*/
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

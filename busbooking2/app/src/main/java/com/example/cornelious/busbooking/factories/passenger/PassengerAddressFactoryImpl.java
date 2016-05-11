@@ -6,7 +6,7 @@ import com.example.cornelious.busbooking.domain.passenger.PassengerAddress;
 /**
  * Created by Cornelious on 4/16/2016.
  */
-public class PassengerAddressFactoryImpl  {
+public class PassengerAddressFactoryImpl extends IAddressFactory {
     private static PassengerAddressFactoryImpl objAddressFactory=null;
     public static PassengerAddressFactoryImpl getInstance()
     {
@@ -14,8 +14,8 @@ public class PassengerAddressFactoryImpl  {
             objAddressFactory=new PassengerAddressFactoryImpl();
         return objAddressFactory;
     }
-
-    public static PassengerAddress createPassengerAddress(String street, String city, String code) {
+    @Override
+    public PassengerAddress createPassengerAddress(String street, String city, String code) {
         PassengerAddress objAddress= new PassengerAddress.AddressBuilder()
                 .street(street)
                 .city(city)

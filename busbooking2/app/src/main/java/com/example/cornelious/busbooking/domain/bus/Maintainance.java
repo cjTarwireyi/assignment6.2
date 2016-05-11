@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Cornelious on 4/17/2016.
  */
-public class Maintainance implements Serializable{
+public class Maintainance implements Serializable {
     private Long maintainanceID;
     private String maintainanceCode;
     private    String description;

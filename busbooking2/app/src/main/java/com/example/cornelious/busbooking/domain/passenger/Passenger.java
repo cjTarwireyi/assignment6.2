@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Cornelious on 4/16/2016.
  */
-public class Passenger implements Serializable {
+public class Passenger implements Serializable{
     private Long passNumber;
     private String idNumber;
     private String name;

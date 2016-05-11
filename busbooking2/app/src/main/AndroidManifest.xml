@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cornelious.busbooking">
 
-    <application android:name=".config.App">
+    <application
+        android:name=".config.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,40 +21,28 @@
         </activity>
 
         <service
-            android:name=".services.Impl.TicketBoundService"
+            android:name=".services.UpdateService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".services.Impl.BusIntentervice"
+            android:name=".services.impl.BusIntentService"
             android:exported="false" />
         <service
-            android:name=".services.Impl.PassengerIntentService"
+            android:name=".services.impl.TicketIntentService"
             android:exported="false" />
         <service
-            android:name=".services.Impl.EmployeeIntentService"
+            android:name=".services.impl.MaintainanceIntentService"
             android:exported="false" />
         <service
-            android:name=".services.Impl.MaintainanceIntentService"
+            android:name=".services.impl.PassengerIntentService"
             android:exported="false" />
         <service
-            android:name=".services.Impl.PassengerBoundService"
-            android:enabled="true"
-            android:exported="true" />
+            android:name=".services.impl.EmployeeIntentService"
+            android:exported="false" />
         <service
-            android:name=".services.Impl.EmployeeBoundService"
+            android:name=".services.impl.BusBoundService"
             android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".services.Impl.BusBoundService"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".services.Impl.MaintainanceBoundService"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".services.Impl.TicketIntentService"
-            android:exported="false"></service>
+            android:exported="true"></service>
     </application>
 
 </manifest>

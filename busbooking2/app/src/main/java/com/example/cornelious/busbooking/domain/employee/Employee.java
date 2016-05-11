@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Cornelious on 4/13/2016.
  */
-public class Employee implements Serializable {
+public class Employee implements Serializable{
     private long employeeNumber;
     private String empId;
     private String empName;

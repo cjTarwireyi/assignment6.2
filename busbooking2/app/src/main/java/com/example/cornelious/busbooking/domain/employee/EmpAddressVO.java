@@ -5,10 +5,12 @@ import android.location.Address;
 import com.example.cornelious.busbooking.Interfaces.IAddress;
 import com.example.cornelious.busbooking.domain.passenger.PassengerAddress;
 
+import java.io.Serializable;
+
 /**
  * Created by Cornelious on 4/13/2016.
  */
-public class EmpAddressVO implements IAddress{
+public class EmpAddressVO implements Serializable{
     private Long id;
     private String street;
     private String city;

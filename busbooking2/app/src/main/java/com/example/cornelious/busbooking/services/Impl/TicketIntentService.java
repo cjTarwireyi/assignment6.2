@@ -1,4 +1,4 @@
-package com.example.cornelious.busbooking.services.Impl;
+package com.example.cornelious.busbooking.services.impl;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -7,36 +7,32 @@ import android.content.Context;
 import com.example.cornelious.busbooking.config.App;
 import com.example.cornelious.busbooking.domain.booking.Ticket;
 import com.example.cornelious.busbooking.repositories.booking.TicketRepoImpl;
-import com.example.cornelious.busbooking.services.ITicketService;
 
 
-//Intent service used so that the adding of records can be executed in the
-// background in a queue in which the service will exit when done with the queue
+public class TicketIntentService extends IntentService {
 
-public class TicketIntentService extends IntentService implements ITicketService{
-
-    private static final String ACTION_ADD= "com.example.cornelious.busbooking.services.Impl.action.ADD";
-    private static final String ACTION_UPDATE = "com.example.cornelious.busbooking.services.Impl.action.UPDATE";
+    private static final String ACTION_ADD = "com.example.cornelious.busbooking.services.impl.action.ADD";
+    private static final String ACTION_UPDATE = "com.example.cornelious.busbooking.services.impl.action.UPDATE";
 
 
-    private static final String EXTRA_ADD = "com.example.cornelious.busbooking.services.Impl.extra.ADD";
-    private static final String EXTRA_UPDATE = "com.example.cornelious.busbooking.services.Impl.extra.UPDATE";
+    private static final String EXTRA_ADD = "com.example.cornelious.busbooking.services.impl.extra.ADD";
+    private static final String EXTRA_UPDATE = "com.example.cornelious.busbooking.services.impl.extra.UPDATE";
 
-    TicketRepoImpl objRepo;
+    private  final TicketRepoImpl objRepo;
     private static  TicketIntentService service=null;
 
-    public TicketIntentService getInstance(){
-        if(service==null)
+    public static TicketIntentService getInstance(){
+        if (service==null)
             service=new TicketIntentService();
-        return  service;
+            return  service;
     }
 
-    private TicketIntentService() {
+    public TicketIntentService() {
         super("TicketIntentService");
-        objRepo = new TicketRepoImpl(App.getAppContext());
+        objRepo=new TicketRepoImpl(App.getContext());
     }
 
-     @Override
+
     public void addTicket(Context context,Ticket ticket) {
         Intent intent = new Intent(context, TicketIntentService.class);
         intent.setAction(ACTION_ADD);
@@ -46,12 +42,11 @@ public class TicketIntentService extends IntentService implements ITicketService
     }
 
 
-   @Override
     public  void updateTicket(Context context,Ticket ticket) {
         Intent intent = new Intent(context, TicketIntentService.class);
         intent.setAction(ACTION_UPDATE);
-
         intent.putExtra(EXTRA_UPDATE, ticket);
+
         context.startService(intent);
     }
 
@@ -62,22 +57,15 @@ public class TicketIntentService extends IntentService implements ITicketService
             if (ACTION_ADD.equals(action)) {
                 final Ticket ticket =(Ticket) intent.getSerializableExtra(EXTRA_ADD);
 
-                add(ticket);
+                objRepo.add(ticket);
             } else if (ACTION_UPDATE.equals(action)) {
-
                 final Ticket ticket =(Ticket) intent.getSerializableExtra(EXTRA_UPDATE);
-                update(ticket);
+
+                objRepo.update(ticket);
             }
         }
     }
 
 
-    private void add(Ticket ticket) {
-        objRepo.add(ticket);
-    }
 
-
-    private void update(Ticket ticket) {
-         objRepo.update(ticket);
-    }
 }

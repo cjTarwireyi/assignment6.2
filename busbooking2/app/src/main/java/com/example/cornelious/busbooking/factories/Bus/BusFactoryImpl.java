@@ -6,7 +6,7 @@ import com.example.cornelious.busbooking.domain.bus.Bus;
 /**
  * Created by Cornelious on 4/16/2016.
  */
-public class BusFactoryImpl   {
+public class BusFactoryImpl  {
     private static BusFactoryImpl objBusFactory=null;
     public BusFactoryImpl getInstance()
     {

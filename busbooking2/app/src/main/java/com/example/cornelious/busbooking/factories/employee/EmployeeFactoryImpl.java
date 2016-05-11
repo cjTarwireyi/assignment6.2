@@ -7,18 +7,18 @@ import com.example.cornelious.busbooking.domain.employee.Employee;
 /**
  * Created by Cornelious on 4/15/2016.
  */
-public class EmployeeFactoryImpl  {
+public class EmployeeFactoryImpl implements IEmployeeFactory {
     private static EmployeeFactoryImpl objEmpFactory=null;
 
-    public EmployeeFactoryImpl getInstance()
+    public IEmployeeFactory getInstance()
     {
         if (objEmpFactory==null)
             objEmpFactory=new EmployeeFactoryImpl();
         return objEmpFactory;
     }
 
-
-    public static Employee createEmployee(Long employeeNumber,String empId, String empName, String empSurname,EmpAddressVO objAddress) {
+    @Override
+    public Employee createEmployee(Long employeeNumber,String empId, String empName, String empSurname,EmpAddressVO objAddress) {
         Employee objEmployee = new Employee.EmployeeBuilder()
                 .employeeNumber(employeeNumber)
                 .id(empId)

@@ -7,16 +7,16 @@ import com.example.cornelious.busbooking.domain.passenger.PassengerAddress;
 /**
  * Created by Cornelious on 4/16/2016.
  */
-public class PassengerFactoryImpl  {
+public class PassengerFactoryImpl implements IPassengerFactory {
    private static PassengerFactoryImpl objPassengerFactory=null;
-    public PassengerFactoryImpl getInstance()
+    public IPassengerFactory getInstance()
     {
         if (objPassengerFactory==null)
             objPassengerFactory= new PassengerFactoryImpl();
         return objPassengerFactory;
     }
-
-    public static Passenger createPassenger(Long passNumber,String passengerId, String passengerName, String passengerSurname,PassengerAddress obAddress) {
+    @Override
+    public Passenger createPassenger(Long passNumber,String passengerId, String passengerName, String passengerSurname,PassengerAddress obAddress) {
         Passenger objPassenger=new Passenger.PassengerBuilder()
                 .passNumber(passNumber)
                 .id(passengerId)

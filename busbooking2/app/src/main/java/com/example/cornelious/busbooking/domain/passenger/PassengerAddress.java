@@ -2,10 +2,12 @@ package com.example.cornelious.busbooking.domain.passenger;
 
 import com.example.cornelious.busbooking.Interfaces.IAddress;
 
+import java.io.Serializable;
+
 /**
  * Created by Cornelious on 4/16/2016.
  */
-public class PassengerAddress implements IAddress {
+public class PassengerAddress implements Serializable  {
     private String street;
     private String city;
     private String code;
@@ -15,17 +17,16 @@ public class PassengerAddress implements IAddress {
      this.city=objAddressBuilder.city;
      this.code=objAddressBuilder.code;
  }
-    @Override
+
     public String getStreet() {
         return street;
     }
 
-    @Override
     public String getCity() {
         return city;
     }
 
-    @Override
+
     public String getCode() {
         return code;
     }
