@@ -42,6 +42,17 @@
         <service
             android:name=".services.impl.BusBoundService"
             android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.impl.ActivateTripBoundService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.impl.SupplierIntentServiceImpl"
+            android:exported="false" />
+        <service
+            android:name=".services.impl.AccountBoundService"
+            android:enabled="true"
             android:exported="true"></service>
     </application>
 

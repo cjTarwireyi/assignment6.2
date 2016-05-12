@@ -22,7 +22,7 @@ public class TestBusIntentService extends AndroidTestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-
+        Thread.sleep(1000);
     }
     public void testAddBus()throws  Exception{
 

@@ -9,7 +9,7 @@ import com.example.cornelious.busbooking.domain.employee.Employee;
 import com.example.cornelious.busbooking.repositories.employee.EmployeeRepoImpl;
 import com.example.cornelious.busbooking.services.IEmployeeIntentService;
 
-
+//An Intent service is used because rhere is no need for a result to be returned to the caller
 public class EmployeeIntentService extends IntentService implements IEmployeeIntentService{
     private final EmployeeRepoImpl objRepo;
     private EmployeeIntentService service=null;

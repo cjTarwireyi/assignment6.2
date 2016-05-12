@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.cornelious.busbooking.Interfaces.bus.IBusRepositroy;
 import com.example.cornelious.busbooking.config.DatabaseConfig;
+import com.example.cornelious.busbooking.domain.account.Account;
 import com.example.cornelious.busbooking.domain.bus.Bus;
 
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class BusRepoImpl extends SQLiteOpenHelper implements IBusRepositroy {
 
     public static final String TABLE_NAME="bus";
     private SQLiteDatabase db;
-    int newDbVersion=1;
+
 
     private static final String COLUMN_BUS_NUMBER="bussID";
     private static final String COLUMN_NUMBER_PLATE="numberPlate";

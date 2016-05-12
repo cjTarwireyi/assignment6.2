@@ -1,4 +1,4 @@
-package com.example.cornelious.busbooking.booking;
+package com.example.cornelious.busbooking.repository;
 
 import android.test.AndroidTestCase;
 

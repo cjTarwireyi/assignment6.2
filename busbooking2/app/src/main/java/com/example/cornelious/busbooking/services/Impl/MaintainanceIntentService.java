@@ -9,7 +9,7 @@ import com.example.cornelious.busbooking.domain.bus.Maintainance;
 import com.example.cornelious.busbooking.repositories.bus.MaintainanceRepoImpl;
 import com.example.cornelious.busbooking.services.IMaintainanceService;
 
-
+//An Intent service is used because rhere is no need for a result to be returned to the caller
 public class MaintainanceIntentService extends IntentService implements IMaintainanceService{
 
     private static final String ACTION_ADD = "com.example.cornelious.busbooking.services.impl.action.ADD";

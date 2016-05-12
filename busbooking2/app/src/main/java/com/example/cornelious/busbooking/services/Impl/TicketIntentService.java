@@ -8,7 +8,7 @@ import com.example.cornelious.busbooking.config.App;
 import com.example.cornelious.busbooking.domain.booking.Ticket;
 import com.example.cornelious.busbooking.repositories.booking.TicketRepoImpl;
 
-
+//An Intent service is used because rhere is no need for a result to be returned to the caller
 public class TicketIntentService extends IntentService {
 
     private static final String ACTION_ADD = "com.example.cornelious.busbooking.services.impl.action.ADD";

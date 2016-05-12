@@ -8,35 +8,35 @@ import android.os.IBinder;
 import android.test.AndroidTestCase;
 import android.widget.Toast;
 
+import com.example.cornelious.busbooking.domain.activatetrip.ActivateTrip;
 import com.example.cornelious.busbooking.config.App;
-import com.example.cornelious.busbooking.domain.bus.Bus;
-import com.example.cornelious.busbooking.repositories.bus.BusRepoImpl;
-import com.example.cornelious.busbooking.services.impl.BusBoundService;
+import com.example.cornelious.busbooking.repositories.activatetrip.ActivateTripRepo;
+import com.example.cornelious.busbooking.services.impl.ActivateTripBoundService;
 
 import junit.framework.Assert;
 
 import java.util.Set;
 
-
-public class TestBusBoundService extends AndroidTestCase{
-    private BusBoundService mService;
+/**
+ * Created by Cornelious on 5/12/2016.
+ */
+public class TestActivateTrip extends AndroidTestCase {
+    private ActivateTripBoundService mService;
     private boolean status;
-    BusRepoImpl objRepo;
+    ActivateTripRepo objRepo;
+
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        //
-        Intent intent = new Intent(App.getContext(),BusBoundService.class );
+        Intent intent = new Intent(App.getContext(),ActivateTripBoundService.class );
         App.getContext().bindService(intent,connection, Context.BIND_AUTO_CREATE);
         status=true;
-        Toast.makeText(getContext(),"service binded successfully",Toast.LENGTH_LONG).show();
-
-
+        Toast.makeText(getContext(), "service binded successfully", Toast.LENGTH_LONG).show();
     }
-    private ServiceConnection connection = new ServiceConnection() {
+    public ServiceConnection connection=new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            BusBoundService.LocalBinder binder =(BusBoundService.LocalBinder)service;
+            ActivateTripBoundService.LocalBinder binder =(ActivateTripBoundService.LocalBinder)service;
             mService=binder.getService();
             status=true;
         }
@@ -48,14 +48,10 @@ public class TestBusBoundService extends AndroidTestCase{
     };
 
     public void testBusAdded(){
+        String status=mService.addTrip("cpt","2hrs","ec");
 
-        String status=mService.addBus();
-
-        Set<Bus> found= mService.find();
-        Assert.assertEquals("BUS ACTIVATED",status);
-        Assert.assertTrue("TestADD"+found.size(),found.size()> 0);
-        Assert.assertNotNull(mService.findById(1L));
+        Set<ActivateTrip> found= mService.find();
+        Assert.assertEquals("New Trip Activated", status);
 
     }
-
 }

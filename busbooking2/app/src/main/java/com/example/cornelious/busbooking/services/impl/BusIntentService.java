@@ -8,7 +8,7 @@ import com.example.cornelious.busbooking.config.App;
 import com.example.cornelious.busbooking.domain.bus.Bus;
 import com.example.cornelious.busbooking.repositories.bus.BusRepoImpl;
 import com.example.cornelious.busbooking.services.IBusIntentService;
-
+//An Intent service is used because rhere is no need for a result to be returned to the caller
 public class BusIntentService extends IntentService implements IBusIntentService {
      private final BusRepoImpl objRepo;
     private static BusIntentService service = null;
